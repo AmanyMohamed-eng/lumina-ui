@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lumina UI</title>
+    <script type="module" src="/src/main.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <h1>Lumina UI</h1>
+      <lumina-button id="theme-toggle" variant="secondary" size="sm">Toggle theme</lumina-button>
+    </header>
+
+    <main>
+      <section aria-labelledby="h-button">
+        <h2 id="h-button">Button</h2>
+        <div class="row">
+          <lumina-button>Primary</lumina-button>
+          <lumina-button variant="secondary">Secondary</lumina-button>
+          <lumina-button variant="ghost">Ghost</lumina-button>
+          <lumina-button variant="danger">Danger</lumina-button>
+          <lumina-button disabled>Disabled</lumina-button>
+          <lumina-button loading>Loading</lumina-button>
+        </div>
+        <div class="row">
+          <lumina-button size="sm">Small</lumina-button>
+          <lumina-button size="md">Medium</lumina-button>
+          <lumina-button size="lg">Large</lumina-button>
+        </div>
+      </section>
+
+      <section aria-labelledby="h-play">
+        <h2 id="h-play">Playground</h2>
+        <div class="playground">
+          <div class="controls">
+            <label>Variant
+              <select id="pg-variant">
+                <option>primary</option><option>secondary</option>
+                <option>ghost</option><option>danger</option>
+              </select>
+            </label>
+            <label>Size
+              <select id="pg-size">
+                <option>sm</option><option selected>md</option><option>lg</option>
+              </select>
+            </label>
+            <label class="check"><input id="pg-disabled" type="checkbox" /> Disabled</label>
+            <label class="check"><input id="pg-loading" type="checkbox" /> Loading</label>
+          </div>
+          <div class="preview"><lumina-button id="pg-preview">Button</lumina-button></div>
+          <pre><code id="pg-code"></code></pre>
+        </div>
+      </section>
+
+      <section aria-labelledby="h-modal">
+        <h2 id="h-modal">Modal</h2>
+        <lumina-button id="open-modal">Open modal</lumina-button>
+        <p id="modal-status" class="muted" role="status"></p>
+        <lumina-modal id="demo-modal" heading="Delete this item?">
+          <p>This action cannot be undone. Press Escape or click outside to cancel.</p>
+          <lumina-button slot="actions" id="modal-cancel" variant="ghost">Cancel</lumina-button>
+          <lumina-button slot="actions" id="modal-confirm" variant="danger">Delete</lumina-button>
+        </lumina-modal>
+      </section>
+
+      <section aria-labelledby="h-tabs">
+        <h2 id="h-tabs">Tabs</h2>
+        <lumina-tabs id="demo-tabs">
+          <div role="tablist" aria-label="Sample tabs">
+            <button role="tab" aria-selected="true">Overview</button>
+            <button role="tab">Usage</button>
+            <button role="tab">Accessibility</button>
+          </div>
+          <div role="tabpanel"><p>Lumina is a small family of Web Components built on one base class.</p></div>
+          <div role="tabpanel"><p>Call <code>defineAll()</code> once, then use the tags in markup.</p></div>
+          <div role="tabpanel"><p>Arrow keys, Home and End move between tabs; focus is managed for you.</p></div>
+        </lumina-tabs>
+        <p id="tabs-status" class="muted" role="status"></p>
+      </section>
+    </main>
+  </body>
+</html>

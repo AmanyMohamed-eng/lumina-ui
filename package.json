@@ -1,11 +1,23 @@
 {
   "name": "lumina-ui",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Lumina Core: a small family of Web Components built on one base class.",
+  "type": "module",
+  "main": "src/main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview --port 4173",
+    "test": "echo \"Unit tests: none yet (behavior is covered by test:e2e)\"",
+    "test:e2e": "playwright test"
   },
-  "keywords": [],
-  "type": "commonjs"
+  "keywords": [
+    "web-components",
+    "design-system"
+  ],
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.64.0",
+    "vite": "^8.3.4"
+  }
 }
