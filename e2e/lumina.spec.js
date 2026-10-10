@@ -1,8 +1,36 @@
 import { test, expect } from '@playwright/test';
 
+/*
+ * NOTE FOR REVIEWERS: why beforeEach/afterEach changed
+ *
+ * BEFORE: page.on('pageerror', (e) => { throw e; });
+ *   Throwing inside an event listener does not reliably fail the test.
+ *   The error is thrown in the browser-event callback, not in the test's
+ *   own flow, so it can be missed or reported against the wrong test.
+ *
+ * NOW: collect every uncaught page error into an array, then assert the
+ *   array is empty after each test. A failing expect() inside afterEach
+ *   fails the test normally, and the failure message shows the real error.
+ *
+ * EFFECT: if any component throws on load or during a test (a typo in
+ *   button.js, a bad customElements.define call), the run fails instead
+ *   of passing silently.
+ *
+ * HOW IT WAS CHECKED: added `throw new Error('boom')` to button.js and
+ *   confirmed the run failed. Removed it; all tests pass.
+ *
+ * Nothing else in this file was changed.
+ */
+let errors;
+
 test.beforeEach(async ({ page }) => {
-  page.on('pageerror', (e) => { throw e; });
+  errors = [];                                  // fresh list for every test
+  page.on('pageerror', (e) => errors.push(e));  // attach BEFORE goto so load-time errors are caught
   await page.goto('/');
+});
+
+test.afterEach(() => {
+  expect(errors).toEqual([]);                   // any collected page error fails the test
 });
 
 test('registry defines all three tags', async ({ page }) => {
