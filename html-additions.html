@@ -1,0 +1,25 @@
+<!-- Add these attributes to your EXISTING controls; do not replace the whole page. -->
+
+<!-- 1. Add an ID to the existing code element used by the Button playground. -->
+<pre><code id="pg-code"></code></pre>
+
+<!-- 2. Add data-copy-target to the Copy button beside that code block.
+     Keep the CSS classes from your existing button so its appearance is unchanged. -->
+<button type="button" data-copy-target="#pg-code" data-copy-label="Copy">Copy</button>
+
+<!-- 3. Optional: add this button inside the playground. -->
+<button type="button" id="pg-reset">Reset</button>
+
+<!-- 4. For other code blocks, give each code element a unique ID and point its
+     Copy button at it. Example: -->
+<pre><code id="token-code">:root { --space-md: 16px; }</code></pre>
+<button type="button" data-copy-target="#token-code" data-copy-label="Copy">Copy</button>
+
+<!-- Navigation example: each href must match an existing section ID. -->
+<nav class="sidebar-nav-example" aria-label="Documentation">
+  <a href="#home">Home</a>
+  <a href="#tokens">Design Tokens</a>
+  <a href="#themes">Themes</a>
+  <a href="#components">Components</a>
+</nav>
+<!-- Your actual page uses .sidebar .nav; keep its existing classes and markup. -->

@@ -1,0 +1,97 @@
+/*
+ * Lumina Tabs is intentionally Light DOM so its ARIA id references remain
+ * in the same tree. This stylesheet owns only its visible presentation.
+ */
+@layer tokens, base, components, page, extras;
+
+@layer components {
+  :where(lumina-tabs) {
+    display: block;
+  }
+
+  :where(lumina-tabs) [role="tablist"] {
+    display: flex;
+    gap: var(--space-xs);
+    overflow: auto hidden;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x proximity;
+    scrollbar-width: thin;
+    border-block-end: var(--border-width-thin) solid var(--color-border-strong);
+  }
+
+  :where(lumina-tabs) [role="tab"] {
+    flex: none;
+    margin: 0;
+    padding-block: var(--space-sm);
+    padding-inline: var(--space-md);
+    border: 0;
+    border-block-end: var(--border-width-selected) solid transparent;
+    border-start-start-radius: var(--radius-sm);
+    border-start-end-radius: var(--radius-sm);
+    background: transparent;
+    color: var(--color-text-muted);
+    font-family: inherit;
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-body);
+    white-space: nowrap;
+    scroll-snap-align: start;
+    cursor: pointer;
+    transition:
+      color var(--duration-fast) var(--ease-standard),
+      background-color var(--duration-fast) var(--ease-standard),
+      border-color var(--duration-fast) var(--ease-standard);
+  }
+
+  :where(lumina-tabs) [role="tab"]:hover {
+    background: var(--color-surface-muted);
+    color: var(--color-text);
+  }
+
+  :where(lumina-tabs) [role="tab"][aria-selected="true"] {
+    border-block-end-color: var(--color-primary);
+    color: var(--color-text);
+    font-weight: var(--font-weight-bold);
+  }
+
+  :where(lumina-tabs) [role="tab"]:focus-visible {
+    outline: var(--border-width-focus) solid var(--color-focus-ring);
+    outline-offset: calc(0 - var(--focus-ring-offset));
+  }
+
+  :where(lumina-tabs) [role="tabpanel"] {
+    padding-block: var(--space-md);
+    padding-inline: var(--space-xs);
+    border-radius: var(--radius-sm);
+  }
+
+  :where(lumina-tabs) [role="tabpanel"][hidden] {
+    display: none;
+  }
+
+  :where(lumina-tabs) [role="tabpanel"]:focus-visible {
+    outline: var(--border-width-focus) solid var(--color-focus-ring);
+    outline-offset: var(--focus-ring-offset);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :where(lumina-tabs) [role="tab"] {
+      transition: none;
+    }
+  }
+
+  @media (forced-colors: active) {
+    :where(lumina-tabs) [role="tablist"] {
+      border-block-end-color: CanvasText;
+    }
+
+    :where(lumina-tabs) [role="tab"][aria-selected="true"] {
+      border-block-end-color: Highlight;
+    }
+
+    :where(lumina-tabs) [role="tab"]:focus-visible,
+    :where(lumina-tabs) [role="tabpanel"]:focus-visible {
+      outline-color: Highlight;
+    }
+  }
+}

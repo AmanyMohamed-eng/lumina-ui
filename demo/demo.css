@@ -1,0 +1,65 @@
+/* Demo-page styling only. Components never depend on this file. */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  background: var(--color-surface);
+  color: var(--color-text);
+  line-height: 1.5;
+}
+
+.site-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: var(--space-md) var(--space-lg);
+  border-bottom: 1px solid var(--color-border);
+}
+.site-header h1 { margin: 0; font-size: 1.25rem; }
+
+main { max-width: 760px; margin: 0 auto; padding: var(--space-lg); display: grid; gap: var(--space-lg); }
+
+section {
+  background: var(--color-surface-muted);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+}
+section h2 { margin: 0 0 var(--space-md); font-size: 1.125rem; }
+
+.row { display: flex; flex-wrap: wrap; gap: var(--space-sm); align-items: center; margin-bottom: var(--space-sm); }
+.muted { color: var(--color-text-muted); font-size: .875rem; margin: var(--space-sm) 0 0; }
+
+/* Playground */
+.controls { display: flex; flex-wrap: wrap; gap: var(--space-md); margin-bottom: var(--space-md); }
+.controls label { display: grid; gap: 4px; font-size: .875rem; color: var(--color-text-muted); }
+.controls .check { display: flex; align-items: center; gap: 6px; align-self: end; }
+select {
+  font: inherit; padding: 6px 8px; color: var(--color-text);
+  background: var(--color-surface); border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+.preview {
+  display: grid; place-items: center; min-height: 96px;
+  background: var(--color-surface); border: 1px dashed var(--color-border);
+  border-radius: var(--radius-md);
+}
+pre {
+  margin: var(--space-md) 0 0; padding: var(--space-md); overflow-x: auto;
+  background: var(--color-surface); border: 1px solid var(--color-border);
+  border-radius: var(--radius-md); font-size: .875rem;
+}
+
+/* Tabs live in light DOM, so the page styles them. */
+lumina-tabs { display: block; }
+lumina-tabs [role="tablist"] { display: flex; gap: 4px; border-bottom: 1px solid var(--color-border); }
+lumina-tabs [role="tab"] {
+  font: inherit; color: var(--color-text-muted); background: none; border: 0;
+  border-bottom: 2px solid transparent; padding: var(--space-sm) var(--space-md); cursor: pointer;
+}
+lumina-tabs [role="tab"][aria-selected="true"] {
+  color: var(--color-primary); border-bottom-color: var(--color-primary);
+}
+lumina-tabs [role="tab"]:focus-visible { outline: 3px solid #a5b4fc; outline-offset: -3px; border-radius: 4px; }
+lumina-tabs [role="tabpanel"] { padding: var(--space-md) 0 0; }
+lumina-tabs [role="tabpanel"][hidden] { display: none; }
+code { font-family: ui-monospace, monospace; }
